@@ -1,0 +1,119 @@
+<title>Craps</title>
+<meta charset="utf-8">
+<link rel="stylesheet" href="sheetCraps.css">
+<html>
+<div id="titre">
+		Craps <br/>
+	</div>
+<body>	
+	<script>
+		var de1;
+		var de2;
+		var sommeDe;
+		var craps = [2,3,12]; // Liste des combinaisons perdante
+		var point = [4,5,6,8,9,10]; // Liste des combinaisons donnant le point
+		var continuer = false;
+		var lancer = confirm("lance");
+		var lancerUn;
+		var nbLancer = 1;
+		iBouton = 0;
+		
+		//document.write('<br/><button id="jouer" value="jouer" onClick= "lancer = true" >Lancer les dés !</button>');
+		
+			
+		if (lancer == true){		
+			de1 = deAlea();
+			de2 = deAlea();
+			affichage(de1,de2,nbLancer); // Afficher les des		
+			sommeDe = de1 + de2;
+			lancerUn = sommeDe;			
+			
+			switch(verifCombi(sommeDe)){ //En fonction du 1er lancer on gagne, perds ou continue
+				case "Perdu":
+					document.write("Perdu");
+					document.write('<br/><button id="refresh" value="Rejouer" onClick="window.location.reload();">REJOUER !</button>');
+					continuer = false;					
+					break;
+				case "Gagne":
+					document.write("Gagné" );
+					document.write('<br/><button id="refresh" value=Rejouer" onClick="window.location.reload();">REJOUER !</button>');
+					continuer = false;
+					break;
+				case "Point":
+					document.write('Point ! <br/>');
+					continuer = true;
+					document.write('<button  id="continuer'+ iBouton +'" value="continuer" onClick="continuerLeJeu(sommeDe)">Continuer !</button><br/>');
+					break;
+			}		
+		}
+		function continuerLeJeu(sommeDe){				
+			var idDelete = document.getElementById("continuer" + iBouton);
+			idDelete.style.display = "none";			
+			document.write('<link rel="stylesheet" href="sheetCraps.css">');
+			affichage(de1,de2,nbLancer);				
+			iBouton++;
+			de1 = deAlea();
+			de2 = deAlea();
+			sommeDe = de1 + de2;			
+			console.log(sommeDe, lancerUn);
+			nbLancer ++;		
+			document.write('<button  id="continuer'+ iBouton +'" value="continuer" onClick="continuerLeJeu(sommeDe)">Continuer !</button><br/>'); // Bouton qui rapelle la fonction 
+				if(verifCombi(sommeDe) == "Gagne") // Si les lancers supplémentaires sont 7 ou 11
+				{
+					var idDelete = document.getElementById("continuer" + iBouton);
+					idDelete.style.display = "none";
+					document.write("Point Perdu");						
+					document.write('<br/><button id="refresh" value="Rejouer" onClick="window.location.reload();">REJOUER !</button>');
+					continuer == false;
+				}
+				else if (sommeDe == lancerUn) // Si un des lancer est égale au 1 lancé
+				{
+					var idDelete = document.getElementById("continuer" + iBouton);
+					idDelete.style.display = "none";
+					document.write("Point gagné");
+					idDelete.style.display = "none";
+					document.write('<br/><button id="refresh" value="Rejouer" onClick="window.location.reload();">REJOUER !</button>');
+					continuer == false						
+				}
+		}
+		
+	/* Fonctions */	
+
+		// Affiche sur la page le résultat du lancé de dé
+		function affichage(de1,de2,nbLancer)
+		{		
+			document.write("Lancé n°" + nbLancer);
+			document.write('<img src="face'+de1+'.png"> ');
+			document.write('<img src="face'+de2+'.png"> <br/>');
+		}
+		
+	
+
+		
+		// Renvoi une valeur aléatoire entre 1 et 6
+		function deAlea()
+		{
+			var alea = Math.round((Math.random() * 5)+1);
+			return alea;	
+		}
+		
+		// Vérifie si la somme des dé est gagnante ou non, ou si on a un point 
+		function verifCombi(sommeDe)
+		{
+			var result;
+			if (craps.includes(sommeDe)){
+				result = "Perdu";
+			}
+			if (sommeDe === 7 || sommeDe ===11)
+			{
+				result = "Gagne";
+			}				
+			if(point.includes(sommeDe))
+			{
+				result = "Point";
+			}		
+			return result;
+		}
+	</script>
+</body>
+</html>

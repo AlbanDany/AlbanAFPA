@@ -1,0 +1,225 @@
+<script>
+/* Pendu 
+Sélectionner un mot aléatoire parmi un tableau de 10 mots. 
+
+L'utilisateur a 6 essais pour trouver le mot, en proposant des lettres une à une. 
+Lorsqu'une lettre proposée est correcte, on affiche le mot avec les lettres correspondantes. 
+Lorsqu'une lettre proposée est incorrecte, on affiche une erreur et le nombre d'essais restants. 
+La partie se termine lorsque le mot proposé a été trouvé ou qu'il n'y a plus d'essai restant.  
+
+Créez un tableau initialisé avec 10 mots 
+Créez une variable qui contient le mot choisi 
+Créez une variable qui contient le nombre d'essais  
+
+Indice: pour permettre la saisie d'un nombre, on utilise la commande prompt(); 
+*/
+
+
+var tabMots = Array("Emeraude", "Rubis", "Saphir", "Diamant", "Topaze", "Grenat", "Peridot", "Opale", "Quartz", "Tourmaline");
+var essais = 6;
+var mot = tabMots[Math.floor(Math.random()*tabMots.length)]; // Récupère un mot au hasard dans tabMots
+var longMot = aff(mot).length; // Recupère la longueur du mot
+var tabChoisi = aff(mot); // tableau contenant les lettres du mot choisi
+var tabAff = Array(); // Tableau avec les lettres qui s'affichent au fur et a mesure
+var lettre = entrerLettre(); 
+
+
+
+tabChoisi.forEach(function(element)
+{
+	
+		// Si la lettre tapee est presente dans le mot
+		if (lettre == element) {
+			
+			console.log(element);		
+		}
+		else if (essais > 0)
+		{
+			console.log("Raté ! Il te reste " + essais + " essais");
+		}
+		else if (essais == 0)
+		{
+			console.log("Perdu");
+		}
+	
+	//console.log(element);
+});
+
+
+
+function entrerLettre(){
+	var lett = prompt("Entrez une lettre");
+	return lett
+}
+
+// La fonction aff décompose le mot en lettre dans un tableau tab
+function aff (motChoisi){
+	var tab = Array();	
+	for (i=0; i <= motChoisi.length -1; i++){
+		tab.push(motChoisi[i]);
+	}
+	return tab;
+}
+
+
+
+
+<!-- console.log(aff(mot)); -->
+<!-- console.log(longMot); -->
+
+
+
+
+
+
+/* Trouver le nombre 
+var gg = Math.floor(Math.random() * 100);
+var trouve = false;
+
+for (i=10; i>0; i--)
+{
+	console.log(gg);
+	var rep = essai();
+			if (rep>gg)
+			{
+				console.log("Perdu, nombre plus petit, il reste " + i + " chances");
+			}
+			else if (rep<gg)
+			{
+				console.log("Perdu, nombre plus grand, il reste " + i + " chances");
+			}
+			else if (rep == gg)
+			{
+				console.log("Bien joué ! Nombre trouvé en " +(10 - i) +" essais");
+				trouve = true;
+				break;
+			}
+		
+}
+function essai (){
+	nb = parseInt(prompt("Entrer un nombre"));
+	return nb	
+}
+*/
+
+/* Mélangeur 
+var tVoy = [1,2,3,4,5,6];
+function mix (tablo){
+	var tab = [];	
+	while (tablo.length > 0 )
+	{
+		tab.push(tablo.splice(Math.floor(Math.random()*tablo.length), 1)[0]);		
+	}
+	console.log(tab);
+return tab
+}
+mix(tVoy); */
+
+/* Affichage lettres 
+function affLettres (){
+	var tVoy = Array("a","e","i","o","u","y");
+	var tCons = Array("B", "C", "D", "F", "G", "H", "J", "K", "L", "M", "N", "P", "Q", "R", "S", "T", "V", "W", "X", "Z");
+	for (voy=0; voy< 4; voy++){
+		console.log(tVoy[Math.floor(Math.random()*tVoy.length)]);
+	}
+	for (cons=0; cons <= 6; cons++){
+		console.log(tCons[Math.floor(Math.random()*tCons.length)]);
+	}
+	return ;
+}
+affLettres(); */
+
+/* Affichage mot 
+function aff (){
+	var tab = Array();
+	var mot = "Anticonstitutionnellement";
+	var longueur = mot.length -1;
+	
+	for (i=0; i <= longueur; i++){
+		tab.push(mot[i]);
+	}
+	return tab;
+}
+console.log(aff());
+*/
+
+/* Affichage tableau 
+function aff (){
+	var tab = Array();
+	var longueur = tab.length -1;
+	for (i=0; i <= longueur; i++){
+		console.log[i]
+	}
+	return tab;
+}
+console.log(aff());
+*/ 
+
+
+/* Tableau aléatoire  
+function alea (){
+	var tab = Array();
+	for (i=0; i <= 10; i++){
+		tab.push(Math.floor(Math.random() * 100));
+	}
+	return tab;
+}
+console.log(alea()); */
+
+/* Tableau multiplication 
+
+function mult (nb){
+	var tab = Array();
+	for (i=0; i <= 10; i++){
+		tab.push(i*nb);
+	}
+	return tab;
+}
+var nombre = parseInt(prompt("Entrez votre nombre"));
+
+console.log(mult(nombre));
+*/
+
+/* fonction modulo
+function calc(nb, div){
+	var nb;
+	var div;
+	var reste=nb;	
+	while (reste >= div)
+	{
+		reste -= div;		
+	}
+	return reste;
+}
+var num = parseInt(prompt ("Votre nombre"));
+var divis = parseInt(prompt ("Votre diviseur"));
+console.log(calc(num,divis));
+
+*/
+
+/* 8-ball
+function nbRandom(min, max) {
+  return Math.floor(Math.random() * (max - min + 1) ) + min;
+}
+function boule(){
+	var repPos = "Oui !";
+	var repNeg=  "Non !";
+	var repEva = "Peut-être";
+	var reponse;
+	var nb = nbRandom(1,6);
+	
+	if (nb<=2){
+		reponse = repPos;
+	}
+	else if (nb >2 && nb <= 4){
+		reponse = repEva;
+	}
+	else if (nb >4){
+		reponse = repNeg;
+	}
+	return reponse;	
+}
+console.log(boule());*/
+	
+	
+</script>

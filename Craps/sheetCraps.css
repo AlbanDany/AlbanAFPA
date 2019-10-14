@@ -1,0 +1,51 @@
+html {
+	background-image:url(fond.jpg);
+	background-attachment:fixed;
+	background-size: COVER;
+	background-repeat:no-repeat;
+}
+#titre{
+	font-size : 100px;
+	border : solid;
+	background-image:url(banner.jpg);
+	background-attachment:fixed;
+	background-size: contain;
+	background-repeat:no-repeat;
+}
+body{
+	font-family : comic sans ms, serif;
+	font-size : 35px;
+	color : black;
+	text-shadow: 1px 0 0 #d60, 1px 1px 0 #d60, 0 1px 0 #d60, -1px 1px 0 #d60, -1px 0 0 #d60, -1px -1px 0 #d60, 0 -1px 0 #d60, 1px -1px 0 #d60;
+	text-align: center;
+}
+#refresh, button{
+	border: 0;
+    line-height: 2.5;
+    padding: 0 20px;
+    font-size: 1rem;
+    text-align: center;
+    color: #fff;
+    text-shadow: 1px 1px 1px #000;
+    border-radius: 10px;
+    background-color: rgba(220, 0, 0, 1);
+    background-image: linear-gradient(to top left,
+                                      rgba(0, 0, 0, .2),
+                                      rgba(0, 0, 0, .2) 30%,
+                                      rgba(0, 0, 0, 0));
+    box-shadow: inset 2px 2px 3px rgba(255, 255, 255, .6),
+                inset -2px -2px 3px rgba(0, 0, 0, .6);
+	
+}
+#refresh:hover, button:hover {
+    background-color: rgba(255, 0, 0, 1);
+}
+
+
+#refresh:active, button:active {
+    box-shadow: inset -2px -2px 3px rgba(255, 255, 255, .6),
+                inset 2px 2px 3px rgba(0, 0, 0, .6);
+}
+affichage{
+	background-color: blue;
+}
