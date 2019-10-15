@@ -1,0 +1,77 @@
+<head>
+	 <link rel="shortcut icon" type="./Jasmine/jasmine-master/image/png" href="./Jasmine/jasmine-master/lib/jasmine-3.5.0/jasmine_favicon.png">
+	 <link rel="stylesheet" href="./Jasmine/jasmine-master/lib/jasmine-3.5.0/jasmine.css">
+
+	  <script src="./Jasmine/jasmine-master/lib/jasmine-3.5.0/jasmine.js"></script>
+	  <script src="./Jasmine/jasmine-master/lib/jasmine-3.5.0/jasmine-html.js"></script>
+	  <script src="./Jasmine/jasmine-master/lib/jasmine-3.5.0/boot.js"></script>
+</head>
+<script>
+
+var tabMots = Array("emeraude", "rubis", "saphir", "diamant", "topaze", "grenat", "peridot", "opale", "quartz", "tourmaline");
+var essais = 6;
+var mot = "diamant"; //tabMots[Math.floor(Math.random()*tabMots.length)]; // Récupère un mot au hasard dans tabMots
+var longMot = aff(mot).length; // Recupère la longueur du mot
+var tabChoisi = aff(mot); // tableau contenant les lettres du mot choisi
+var tabAff = Array(); // Tableau avec les lettres qui s'affichent au fur et a mesure
+
+// console.log(tabChoisi); // Affiche le tableau de lettre du mot choisi
+tabAff = initTabl(tabAff, longMot); // Initialise le tableau vide avec autant de "_" que de lettres dans le mot choisi
+while (essais > 0) // Tant qu'il reste des essais
+{
+	if (tabAff.includes("_")){ // Tant qu'il y a des cases vides
+		var lettre = entrerLettre(); // On entre une nouvelle lettre à chaque essai							
+		if (tabChoisi.includes(lettre)) // Si la lettre entrée est la même que celle du mot
+		{
+			var pos = tabChoisi.indexOf(lettre);  // Position de la lettre dans le mot choisi
+			console.log("Bien joué ! Il reste " + essais + " chances");			
+			while (tabChoisi.indexOf(lettre) !== -1) { // Verifie si il y a plusieurs occurence d'une lettre, et les affichent
+				tabAff.splice(pos, 1, lettre);
+				tabChoisi.splice(pos, 1, "-");
+				pos = tabChoisi.indexOf(lettre);
+			}
+			console.log(tabAff);			
+		}
+		else // Si la lettre est différente de celle entrée
+		{
+			console.log("Raté ! Il te reste " + essais + " essais");
+			console.log(tabAff);
+			essais --;
+		}	
+	}
+	else 
+	{ 
+		console.log("Fini");
+		break;
+	}	
+}
+if (essais == 0) // Si il n'y a plus d'essais
+{
+	console.log("Perdu");
+}
+
+/* Fonctions */ 
+
+//Initialise le tableau avec autant de "_" que de caractères
+function initTabl (tabVide, longueur){
+	while (longueur > 0)
+	{
+		tabVide.push("_");
+		longueur --;
+	}
+	return tabVide;
+}
+// Permet de taper une lettre
+function entrerLettre(){
+	var lett = prompt("Entrez une lettre");
+	return lett
+}
+// Décompose le mot en lettre dans un tableau tab
+function aff (motChoisi){
+	var tab = Array();	
+	for (i=0; i <= motChoisi.length -1; i++){
+		tab.push(motChoisi[i]);
+	}
+	return tab;
+}
+</script>

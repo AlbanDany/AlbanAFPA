@@ -1,0 +1,98 @@
+<title>morpion</title>
+<meta charset="utf-8">
+<link rel="stylesheet" href="sheet1.css">
+<h2 id="Joueur1" onclick="pseudo(this)">Joueur 1</h2>
+<h2 id="Joueur2" onclick="pseudo(this)">Joueur 2</h2>
+<table>
+	<tr>
+		<td id = "1" onclick="croix_rond(this, 'red')"></td>
+		<td id = "2" onclick="croix_rond(this, 'red')"></td>
+		<td id = "3" onclick="croix_rond(this, 'red')"></td>
+	</tr>
+	<tr>
+		<td id = "4" onclick="croix_rond(this, 'red')"></td>
+		<td id = "5" onclick="croix_rond(this, 'red')"></td>	
+		<td id = "6" onclick="croix_rond(this, 'red')"></td>
+	</tr>
+	<tr>
+		<td id = "7" onclick="croix_rond(this, 'red')"></td>
+		<td id = "8" onclick="croix_rond(this, 'red')"></td>
+		<td id = "9" onclick="croix_rond(this, 'red')"></td>
+	</tr>
+</table>
+<script>
+
+var signe = true;
+var grille = [,,]
+var tabWin = [[1,2,3],[4,5,6],[7,8,9],[1,4,7],[2,5,8],[3,6,9],[1,5,9],[3,5,7]];
+var tabX = [];
+var tabO = [];
+
+
+
+function verifVictoire () {
+	var un = document.getElementById("1").textContent;
+	var deux = document.getElementById("2").textContent;
+	var trois = document.getElementById("3").textContent;
+	var quatre = document.getElementById("4").textContent;
+	var cinq = document.getElementById("5").textContent;
+	var six = document.getElementById("6").textContent;
+	var sept = document.getElementById("7").textContent;
+	var huit = document.getElementById("8").textContent;
+	var neuf = document.getElementById("9").textContent;
+
+	if (un == deux && un == trois && un != "") {
+		return true;
+	}
+	if (un == quatre && un == sept && un != "") {
+		return true;
+	}
+	if (un == cinq && un == neuf && un != "") {
+		return true;
+	}
+	if (quatre == cinq && quatre == six && quatre != "") {
+		return true;
+	}
+	if (sept == huit&& sept == neuf && sept != "") {
+		return true;
+	}
+	if (deux == cinq && deux == huit && deux != "") {
+		return true;
+	}
+	if (trois == six && trois== neuf&& trois != "") {
+		return true;
+	}
+	if (trois == cinq && trois == sept && trois!= "") {
+		return true;
+	}
+}
+// Fonction qui permet d'introduire des rond ou des croix dans les cellules du tableau, permet également d'interdire de rejouer sur une cellule
+function croix_rond(elmnt,clr) {  		
+		if(verifVictoire()){
+			alert("C'est la victoire ");
+		}
+		else{
+			if(elmnt.innerHTML.length == 0){
+			
+				if (signe == true ){
+					elmnt.style.color = clr;
+					elmnt.innerHTML = "X";
+					signe = false;
+					tabX.push(elmnt.getAttribute("id"));
+				}
+				else {
+					elmnt.style.color = clr;
+					elmnt.innerHTML = "O";
+					signe = true;
+					tabO.push(elmnt.getAttribute("id"));		
+				}				
+			}			
+		}	
+}
+
+//Fonction qui permet de modifier le pseudo du joueur
+function pseudo(nom){
+	var pseudo = prompt("Choisiez un pseudo");
+	nom.innerHTML = pseudo
+}
+</script>
